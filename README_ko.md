@@ -4,7 +4,7 @@
 
 kmarkdown은 **잘 테스트된**, **순수한 Kotlin** Markdown 라이브러리입니다\.
 
-이 README\.md는 kmarkdown으로 쓰여졌어요\. [확인해보세요\!](https://github.com/devngho/kmarkdown/src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt)
+이 README\.md는 kmarkdown으로 쓰여졌어요\. [확인해보세요\!](src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt)
 
 ### 설치
 

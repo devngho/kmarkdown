@@ -27,7 +27,7 @@ class Readme: StringSpec({
                     +("kmarkdown is a" _ "well-tested"(Bold) _ "and" _ "pure-Kotlin"(Bold) _ "Markdown library.")
                 }
                 block {
-                    +("This README.MD was generated using kmarkdown." _ link("Check it out!", "https://github.com/devngho/kmarkdown/src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt"))
+                    +("This README.MD was generated using kmarkdown." _ link("Check it out!", "src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt"))
                 }
             }
 
@@ -354,7 +354,7 @@ class Readme: StringSpec({
                     +("kmarkdown은" _ "잘 테스트된"(Bold) + "," _ "순수한 Kotlin"(Bold) _ "Markdown 라이브러리입니다.")
                 }
                 block {
-                    +("이 README.md는 kmarkdown으로 쓰여졌어요." _ link("확인해보세요!", "https://github.com/devngho/kmarkdown/src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt"))
+                    +("이 README.md는 kmarkdown으로 쓰여졌어요." _ link("확인해보세요!", "src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt"))
                 }
             }
 

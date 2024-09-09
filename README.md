@@ -4,7 +4,7 @@ English \| [한국어](README_ko.md)
 
 kmarkdown is a **well\-tested** and **pure\-Kotlin** Markdown library\.
 
-This README\.MD was generated using kmarkdown\. [Check it out\!](https://github.com/devngho/kmarkdown/src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt)
+This README\.MD was generated using kmarkdown\. [Check it out\!](src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt)
 
 ### Installation
 
