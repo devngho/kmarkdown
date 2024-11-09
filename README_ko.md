@@ -8,6 +8,8 @@ kmarkdown은 **잘 테스트된**, **순수한 코틀린** 마크다운 라이�
 
 ### 변경 내역
 
+- 0\.2\.2
+  - Italic, GFMStrikethrough element type 수정
 - 0\.2\.1
   - Block\.BlockDSL과 MarkdownDSL 생성자는 이제 public입니다\.
 - 0\.2\.0

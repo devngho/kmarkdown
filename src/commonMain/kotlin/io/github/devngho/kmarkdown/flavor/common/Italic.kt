@@ -7,7 +7,7 @@ import io.github.devngho.kmarkdown.flavor.MarkdownElement
 import io.github.devngho.kmarkdown.flavor.MarkdownElementDescriptor
 
 @MarkdownDSLMarker
-data class Italic(var element: MarkdownElement): MarkdownElement {
+data class Italic(var element: Block): MarkdownElement {
     override val descriptor: MarkdownElementDescriptor<out MarkdownElement> = Text
 
     override fun encode(): String = "*${element.encode()}*"

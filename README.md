@@ -8,6 +8,8 @@ This README\.MD was generated using kmarkdown\. [Check it out\!](src/jvmTest/kot
 
 ### Changelog
 
+- 0\.2\.2
+  - Italic, GFMStrikethrough element type is fixed\.
 - 0\.2\.1
   - Block\.BlockDSL and MarkdownDSL constructor is now public\.
 - 0\.2\.0

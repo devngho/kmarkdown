@@ -6,7 +6,7 @@ import io.github.devngho.kmarkdown.flavor.*
 import io.github.devngho.kmarkdown.flavor.common.Block
 
 @MarkdownDSLMarker
-data class GFMStrikethrough(var element: MarkdownElement): MarkdownElement {
+data class GFMStrikethrough(var element: Block): MarkdownElement {
     override val descriptor: MarkdownElementDescriptor<out MarkdownElement> = GFMStrikethrough
 
     override fun encode(): String = "~~${element.encode()}~~"
@@ -19,7 +19,7 @@ data class GFMStrikethrough(var element: MarkdownElement): MarkdownElement {
         override val flavor: Flavor = GFMFlavor
 
         override fun convertToFlavor(element: GFMStrikethrough, flavor: Flavor): MarkdownElement {
-            return GFMStrikethrough(element)
+            return GFMStrikethrough(element.element)
         }
 
         override fun convertFromElement(element: MarkdownElement): GFMStrikethrough? = null

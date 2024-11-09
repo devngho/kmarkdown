@@ -34,6 +34,11 @@ class Readme: StringSpec({
 
             +heading(3, "Changelog") {
                 +list(List.ListStyle.UNORDERED) {
+                    item { +"0.2.2" }
+                    list(List.ListStyle.UNORDERED) {
+                        item { +"Italic, GFMStrikethrough element type is fixed." }
+                    }
+
                     item { +"0.2.1" }
                     list(List.ListStyle.UNORDERED) {
                         item { +"Block.BlockDSL and MarkdownDSL constructor is now public." }
@@ -374,6 +379,11 @@ class Readme: StringSpec({
 
             +heading(3, "변경 내역") {
                 +list(List.ListStyle.UNORDERED) {
+                    item { +"0.2.2" }
+                    list(List.ListStyle.UNORDERED) {
+                        item { +"Italic, GFMStrikethrough element type 수정" }
+                    }
+
                     item { +"0.2.1" }
                     list(List.ListStyle.UNORDERED) {
                         item { +"Block.BlockDSL과 MarkdownDSL 생성자는 이제 public입니다." }
