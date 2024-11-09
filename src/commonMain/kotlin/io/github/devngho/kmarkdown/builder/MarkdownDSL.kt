@@ -13,6 +13,14 @@ class MarkdownDSL internal constructor(val flavor: Flavor) {
         elements.add(element)
     }
 
+    operator fun MarkdownElement.unaryPlus() {
+        elements.add(this)
+    }
+
+    operator fun List<MarkdownElement>.unaryPlus() {
+        elements.addAll(this)
+    }
+
     fun build(): String = flavor.build(elements.map { it.convertTo(flavor) })
 
     companion object {

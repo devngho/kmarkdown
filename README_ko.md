@@ -1,10 +1,18 @@
-[English](README.md)  \| 한국어
+[English](README.md)  \|  한국어
 
 ## kmarkdown
 
-kmarkdown은 **잘 테스트된**, **순수한 Kotlin** Markdown 라이브러리입니다\.
+kmarkdown은 **잘 테스트된**, **순수한 코틀린** 마크다운 라이브러리입니다\.
 
 이 README\.md는 kmarkdown으로 쓰여졌어요\. [확인해보세요\!](src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt)
+
+### 변경 내역
+
+- 0\.2\.0
+    - MarkdownDSL에 요소를 추가하는 방법이 변경되었습니다\.
+    - TextStyle는 이제 일반 MarkdownElement입니다\.
+- 0\.1\.0
+    - 첫 릴리즈
 
 ### 설치
 
@@ -30,11 +38,11 @@ val document = markdown(GFMFlavor) {
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-paragraph {
-    block {
++paragraph {
+    +block {
         +("이건 문단입니다.")
     }
-    block {
+    +block {
         +("여러 블럭을 포함할 수 있습니다.")
     }
 }
@@ -56,31 +64,27 @@ paragraph {
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-block {
++block {
     +("이건 블럭입니다. ")
     +("여러 마크다운 요소를 포함할 수 있습니다.")
     
     // 또는 '_' infix 함수를 사용해 공백으로 마크다운 요소를 연결할 수 있습니다.
     
-    +("_ infix 함수를 사용해"() _ "이렇게 블럭을 만들 수도 있습니다."())
+    +(text("_ infix 함수를 사용해") _ text("이렇게 블럭을 만들 수도 있습니다."))
     
     // + 연산자는 공백 없이 마크다운 요소를 연결할 수 있습니다.
     
-    +("+ 연산자를 사용해 "() + "이렇게 블럭을 만들 수도 있습니다.")
+    +(text("+ 연산자를 사용해 ") + text("이렇게 블럭을 만들 수도 있습니다."))
     
     // 또는 마크다운 요소의 리스트를 사용할 수도 있습니다.
     
-    +listOf("리스트를 사용해"(), "블럭을 만들 수도 있습니다."())
+    +listOf(text("리스트를 사용해"), text("블럭을 만들 수도 있습니다."))
 }
 ```
 
 출력:
 
-이건 블럭입니다\. 여러 마크다운 요소를 포함할 수 있습니다\.\+ 연산자를 사용해 이렇게 블럭을 만들 수도 있습니다\.이렇게 블럭을 만들 수도 있습니다\. 사용해리스트를 사용해 블럭을 만들 수도 있습니다\.
-
-> **텍스트 뒤에 왜 \(\)를 붙였나요?**
->
-> 마크다운 `Text`로 변환하기 위함입니다\. \(\) 안에 `Bold`와 같은 스타일을 추가할 수 있습니다\.
+이건 블럭입니다\. 여러 마크다운 요소를 포함할 수 있습니다\.\_ infix 함수를 사용해 이렇게 블럭을 만들 수도 있습니다\.\+ 연산자를 사용해 이렇게 블럭을 만들 수도 있습니다\.리스트를 사용해 블럭을 만들 수도 있습니다\.
 
 #### 헤딩
 
@@ -88,8 +92,8 @@ block {
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-heading(2, "Hello, World!") {
-    block {
++heading(2, "Hello, World!") {
+    +block {
         +("이건 헤딩입니다.")
     }
 }
@@ -107,7 +111,7 @@ heading(2, "Hello, World!") {
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-link("이건 링크입니다.", "https://example.com")
++link("이건 링크입니다.", "https://example.com")
 ```
 
 출력:
@@ -120,7 +124,7 @@ link("이건 링크입니다.", "https://example.com")
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-list(List.ListStyle.ORDERED) {
++list(List.ListStyle.ORDERED) {
     item {
         +"리스트 아이템입니다."
     }
@@ -143,8 +147,8 @@ list(List.ListStyle.ORDERED) {
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-blockquote {
-    block {
++blockquote {
+    +block {
         +("이건 인용구입니다.")
     }
 }
@@ -160,8 +164,8 @@ blockquote {
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-codeblock("println(\"Hello, World!\")", "kotlin")
-codeblock("언어 옵션은 선택입니다.")
++codeblock("println(\"Hello, World!\")", "kotlin")
++codeblock("언어 옵션은 선택입니다.")
 ```
 
 출력:
@@ -178,7 +182,7 @@ println("Hello, World!")
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-inlineCodeBlock("println(\"Hello, World!\")")
++inlineCodeBlock("println(\"Hello, World!\")")
 ```
 
 출력:
@@ -187,7 +191,7 @@ inlineCodeBlock("println(\"Hello, World!\")")
 
 #### Raw
 
-> **Raw 요소를 사용하는 것은 권장되지 않습니다\.**
+> **Raw 요소를 사용하는 것은 권장하지 않습니다\.**
 >
 > 대신에 커스텀 `Flavor`를 만드는 것을 추천합니다\.
 
@@ -195,7 +199,7 @@ Raw 요소를 만드려면 `raw` 함수를 사용하세요\.
 
 ```kotlin
 // 마크다운 문서 안에서 사용하세요
-raw("이건 Raw 요소입니다.")
++raw("이건 Raw 요소입니다.")
 ```
 
 출력:

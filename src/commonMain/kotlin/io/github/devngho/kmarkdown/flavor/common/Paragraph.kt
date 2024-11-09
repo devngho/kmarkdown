@@ -15,10 +15,7 @@ data class Paragraph(val children: List<MarkdownElement>): MarkdownElement {
     override fun encode(): String = children.joinToString(separator = "\n\n") { it.encode() }
 
     companion object: MarkdownElementDescriptor<Paragraph> {
-        fun MarkdownDSL.paragraph(block: MarkdownDSL.() -> Unit) {
-            val element = Paragraph(MarkdownDSL(this.flavor).apply(block).elements)
-            add(element)
-        }
+        fun MarkdownDSL.paragraph(block: MarkdownDSL.() -> Unit) = Paragraph(MarkdownDSL(this.flavor).apply(block).elements)
 
         override val id: String = "paragraph"
         override val flavor: Flavor = CommonFlavor

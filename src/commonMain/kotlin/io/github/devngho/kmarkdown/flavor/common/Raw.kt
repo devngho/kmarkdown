@@ -11,9 +11,7 @@ data class Raw(val body: String): MarkdownElement {
     override fun encode(): String = body
 
     companion object: MarkdownElementDescriptor<Raw> {
-        fun MarkdownDSL.raw(body: String) {
-            add(Raw(body))
-        }
+        fun MarkdownDSL.raw(body: String) = Raw(body)
 
         @Suppress("UnusedReceiverParameter")
         fun Block.BlockDSL.raw(body: String) = Raw(body)

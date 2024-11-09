@@ -13,9 +13,7 @@ class HorizontalRule : MarkdownElement {
     override fun encode(): String = "---"
 
     companion object: MarkdownElementDescriptor<HorizontalRule> {
-        fun MarkdownDSL.horizontalRule() {
-            add(HorizontalRule())
-        }
+        fun MarkdownDSL.horizontalRule() = HorizontalRule()
 
         override val id: String = "horizontal_rule"
         override val flavor: Flavor = CommonFlavor

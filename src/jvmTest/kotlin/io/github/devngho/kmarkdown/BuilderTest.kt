@@ -1,24 +1,24 @@
 package io.github.devngho.kmarkdown
 
 import io.github.devngho.kmarkdown.builder.MarkdownDSL.Companion.markdown
+import io.github.devngho.kmarkdown.flavor.common.Block.Companion.block
 import io.github.devngho.kmarkdown.flavor.common.Blockquote.Companion.blockquote
-import io.github.devngho.kmarkdown.flavor.common.Text.Companion.text
-import io.github.devngho.kmarkdown.flavor.common.Bold
+import io.github.devngho.kmarkdown.flavor.common.Bold.Companion.bold
 import io.github.devngho.kmarkdown.flavor.common.CodeBlock.Companion.codeblock
 import io.github.devngho.kmarkdown.flavor.common.Heading.Companion.heading
-import io.github.devngho.kmarkdown.flavor.common.Italic
-import io.github.devngho.kmarkdown.flavor.common.Paragraph.Companion.paragraph
-import io.github.devngho.kmarkdown.flavor.common.Block.Companion.block
 import io.github.devngho.kmarkdown.flavor.common.HorizontalRule.Companion.horizontalRule
 import io.github.devngho.kmarkdown.flavor.common.InlineCodeBlock.Companion.inlineCodeBlock
+import io.github.devngho.kmarkdown.flavor.common.Italic.Companion.italic
 import io.github.devngho.kmarkdown.flavor.common.Link.Companion.link
 import io.github.devngho.kmarkdown.flavor.common.List
 import io.github.devngho.kmarkdown.flavor.common.List.Companion.list
+import io.github.devngho.kmarkdown.flavor.common.Paragraph.Companion.paragraph
 import io.github.devngho.kmarkdown.flavor.common.Raw.Companion.raw
 import io.github.devngho.kmarkdown.flavor.common.Table
 import io.github.devngho.kmarkdown.flavor.common.Table.Companion.table
+import io.github.devngho.kmarkdown.flavor.common.Text.Companion.text
 import io.github.devngho.kmarkdown.flavor.gfm.GFMFlavor
-import io.github.devngho.kmarkdown.flavor.gfm.GFMStrikethrough
+import io.github.devngho.kmarkdown.flavor.gfm.GFMStrikethrough.Companion.strikethrough
 import io.github.devngho.kmarkdown.flavor.gfm.GFMTaskList.Companion.gfmTaskList
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -26,20 +26,20 @@ import io.kotest.matchers.shouldBe
 class BuilderTest: StringSpec({
     "Can build a markdown document" {
         val document = markdown {
-            paragraph {
-                block {
-                    +("Hello, World!" _ "Hello, World!".styled(Bold) _ "Hello, World!".styled(Bold, Italic))
+            +paragraph {
+                +block {
+                    +("Hello, World!" _ bold { +"Hello, World!" } _ bold { +italic { +"Hello, World!" } })
 
                     +listOf(
                         inlineCodeBlock("println(\"Hello, World!\")"),
                         link("Example site", "https://example.com"),
-                        link("https://example.com") { +"Example site".styled(Bold) }
+                        link("https://example.com") { +bold { +"Example site" } }
                     )
                 }
             }
 
-            paragraph {
-                list(List.ListStyle.ORDERED) {
+            +paragraph {
+                +list(List.ListStyle.ORDERED) {
                     item {
                          +"This is a list item."
                     }
@@ -61,7 +61,7 @@ class BuilderTest: StringSpec({
                     }
                 }
 
-                table {
+                +table {
                     header {
                         col { +"Header 1" }
                         col(Table.TableColOrder.LEFT) { +"Header 2" }
@@ -85,34 +85,34 @@ class BuilderTest: StringSpec({
                 }
             }
 
-            horizontalRule()
+            +horizontalRule()
 
-            paragraph {
-                link("This is a link", "https://example.com")
-                link("https://example.com") {
-                    +"This is also a link".styled(Bold)
+            +paragraph {
+                +link("This is a link", "https://example.com")
+                +link("https://example.com") {
+                    +bold { +"This is also a link" }
                 }
-                raw("This is a raw element.")
+                +raw("This is a raw element.")
 
-                inlineCodeBlock("println(\"Hello, World!\")")
+                +inlineCodeBlock("println(\"Hello, World!\")")
             }
 
-            heading(2, "Hello, World!") {
-                blockquote {
-                    text("This is a blockquote.")
-                    text("With multiple lines.", Bold)
-                    list(List.ListStyle.UNORDERED) {
+            +heading(2, "Hello, World!") {
+                +blockquote {
+                    +text("This is a blockquote.")
+                    +bold { +"With multiple lines." }
+                    +list(List.ListStyle.UNORDERED) {
                         item {
                             +"List in blockquote."
                         }
                     }
                 }
 
-                codeblock("""
+                +codeblock("""
                 |A code block.
                 """.trimMargin())
 
-                codeblock("""
+                +codeblock("""
                 |fun main() {
                 |    println("Hello, World!")
                 |}
@@ -176,9 +176,9 @@ class BuilderTest: StringSpec({
 
     "Can build a markdown document (GFM flavor)" {
         val document = markdown(GFMFlavor) {
-            text("Hello, World!", GFMStrikethrough)
+            +strikethrough { +"Hello, World!" }
 
-            gfmTaskList {
+            +gfmTaskList {
                 item(false) {
                     +"This is a task list item."
                 }

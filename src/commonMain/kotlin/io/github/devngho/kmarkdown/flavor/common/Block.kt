@@ -45,20 +45,13 @@ data class Block(val children: kotlin.collections.List<MarkdownElement>): Markdo
         /** Combines two elements with a space between them. */
         infix fun String.`_`(element: MarkdownElement) = Block(listOf(Text(this), Text(" "), element))
 
-        fun String.styled(vararg style: Text.TextStyle) = Text(this, style.toMutableList())
-
-        operator fun String.invoke(vararg style: Text.TextStyle) = Text(this, style.toMutableList())
-
-        fun build(): kotlin.collections.List<MarkdownElement> = elements.map { it.convertTo<MarkdownElement>(flavor) }
+        fun build(): kotlin.collections.List<MarkdownElement> = elements.map { it.convertTo(flavor) }
     }
 
     override fun encode(): String = children.joinToString("") { it.encode() }
 
     companion object: MarkdownElementDescriptor<Block> {
-        fun MarkdownDSL.block(block: BlockDSL.() -> Unit) {
-            val element = Block(BlockDSL(this.flavor).apply(block).build())
-            add(element)
-        }
+        fun MarkdownDSL.block(block: BlockDSL.() -> Unit) = Block(BlockDSL(this.flavor).apply(block).build())
 
         override val id: String = "block"
         override val flavor: Flavor = CommonFlavor

@@ -14,7 +14,6 @@ interface Flavor {
     }
 
     val elements: Map<String, MarkdownElementDescriptor<*>>
-    val staticElements: Map<String, MarkdownElementDescriptor<*>>
 
     fun build(elements: List<MarkdownElement>): String
 }

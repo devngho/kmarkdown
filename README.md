@@ -6,6 +6,14 @@ kmarkdown is a **well\-tested** and **pure\-Kotlin** Markdown library\.
 
 This README\.MD was generated using kmarkdown\. [Check it out\!](src/jvmTest/kotlin/io/github/devngho/kmarkdown/Readme.kt)
 
+### Changelog
+
+- 0\.2\.0
+    - How to add elements in MarkdownDSL is changed\.
+    - TextStyle is just a MarkdownElement now\.
+- 0\.1\.0
+    - Initial release
+
 ### Installation
 
 ```kts
@@ -34,11 +42,11 @@ A paragraph represents multiple markdown elements, such as code blocks or list, 
 
 ```kotlin
 // in markdown document
-paragraph {
-    block {
++paragraph {
+    +block {
         +("This is a paragraph.")
     }
-    block {
+    +block {
         +("It can contain multiple blocks.")
     }
 }
@@ -60,32 +68,28 @@ A block can contain multiple inline markdown elements like text, link\.
 
 ```kotlin
 // in markdown document
-block {
++block {
     +("This is a block. ")
     +("It can contain multiple markdown elements.")
     
     // or you can use '_' infix function
     // to concatenate markdown elements with a space
     
-    +("This is another way to create a block."() _ "using the '_' infix function."())
+    +(text("This is another way to create a block.") _ text("using the '_' infix function."))
     
     // + operator can concatenate markdown elements without space
     
-    +("+ operator can concatenate "() + "markdown elements without space.")
+    +(text("+ operator can concatenate ") + text("markdown elements without space."))
     
     // or you can use list of markdown elements
     
-    +listOf("You can also use a list of markdown elements."(), "to create a block.")
+    +listOf(text("You can also use a list of markdown elements."), text("to create a block."))
 }
 ```
 
 Output:
 
 This is a block\. It can contain multiple markdown elements\.This is another way to create a block\. using the '\_' infix function\.\+ operator can concatenate markdown elements without space\.You can also use a list of markdown elements\. to create a block\.
-
-> **Why did you append \(\) to the text?**
->
-> Because the text is a markdown element, and the function expects a markdown element\. You can add styles to the text by appending styles to the text\.
 
 #### Heading
 
@@ -95,8 +99,8 @@ The `heading` function takes a level and text as parameters\.
 
 ```kotlin
 // in markdown document
-heading(2, "Hello, World!") {
-    block {
++heading(2, "Hello, World!") {
+    +block {
         +("This is a heading.")
     }
 }
@@ -116,7 +120,7 @@ The `link` function takes a text and url as parameters\.
 
 ```kotlin
 // in markdown document
-link("This is a link", "https://example.com")
++link("This is a link", "https://example.com")
 ```
 
 Output:
@@ -131,11 +135,11 @@ The `list` function takes a list style as a parameter\.
 
 ```kotlin
 // in markdown document
-list(List.ListStyle.ORDERED) {
++list(List.ListStyle.ORDERED) {
     item {
         +"This is a list item."
     }
-    list(List.ListStyle.UNORDERED) {
+    list(List.ListStyle.ORDERED) {
         item {
             +"This is a nested list item."
         }
@@ -146,7 +150,7 @@ list(List.ListStyle.ORDERED) {
 Output:
 
 1. This is a list item\.
-- This is a nested list item\.
+1. This is a nested list item\.
 
 #### Blockquote
 
@@ -156,8 +160,8 @@ The `blockquote` function takes a block as a parameter\.
 
 ```kotlin
 // in markdown document
-blockquote {
-    block {
++blockquote {
+    +block {
         +("This is a blockquote.")
     }
 }
@@ -175,8 +179,8 @@ The `codeblock` function takes a code block and language \(optional\) as paramet
 
 ```kotlin
 // in markdown document
-codeblock("println(\"Hello, World!\")", "kotlin")
-codeblock("Language is optional.")
++codeblock("println(\"Hello, World!\")", "kotlin")
++codeblock("Language is optional.")
 ```
 
 Output:
@@ -195,7 +199,7 @@ The `inlineCodeBlock` function takes a code block as a parameter\.
 
 ```kotlin
 // in markdown document
-inlineCodeBlock("println(\"Hello, World!\")")
++inlineCodeBlock("println(\"Hello, World!\")")
 ```
 
 Output:
@@ -214,7 +218,7 @@ The `raw` function takes a text as a parameter\.
 
 ```kotlin
 // in markdown document
-raw("This is a raw element.")
++raw("This is a raw element.")
 ```
 
 Output:

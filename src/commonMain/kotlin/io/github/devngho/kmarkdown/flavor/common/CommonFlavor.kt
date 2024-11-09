@@ -9,6 +9,8 @@ object CommonFlavor: Flavor {
     override val elements: Map<String, MarkdownElementDescriptor<*>> = buildElements(
         Raw,
         Text,
+        Italic,
+        Bold,
         Paragraph,
         Blockquote,
         Heading,
@@ -23,8 +25,6 @@ object CommonFlavor: Flavor {
         Table.TableCol,
         Table.TableColOrdered
     )
-
-    override val staticElements: Map<String, MarkdownElementDescriptor<*>> = buildElements(Bold, Italic)
 
     override fun build(elements: kotlin.collections.List<MarkdownElement>): String = elements.joinToString(separator = "\n\n") { it.encode() }
 }

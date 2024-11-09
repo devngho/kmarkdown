@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "io.github.devngho"
-version = "0.1.0"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -113,6 +113,7 @@ kotlin {
             implementation("io.kotest:kotest-runner-junit5:$kotestVersion")
             implementation(kotlin("test-common"))
             implementation(kotlin("test-annotations-common"))
+            implementation(kotlin("reflect"))
         }
 
         applyDefaultHierarchyTemplate()

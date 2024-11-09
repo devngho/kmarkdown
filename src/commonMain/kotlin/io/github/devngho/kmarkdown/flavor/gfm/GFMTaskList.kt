@@ -39,11 +39,11 @@ data class GFMTaskList(val items: KList<Pair<Boolean, MarkdownElement>>): Markdo
     }.joinToString("\n")
 
     companion object: MarkdownElementDescriptor<GFMTaskList> {
-        fun MarkdownDSL.gfmTaskList(block: TaskListDSL.() -> Unit) {
+        fun MarkdownDSL.gfmTaskList(block: TaskListDSL.() -> Unit): GFMTaskList {
             if (flavor !is GFMFlavor) throw IllegalArgumentException("GFMTaskList is only available in GFM flavor")
 
             val element = TaskListDSL(this.flavor).apply(block).build()
-            add(element)
+            return GFMTaskList(element.items)
         }
 
         override val id: String = "task_list"

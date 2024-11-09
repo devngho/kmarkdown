@@ -12,9 +12,7 @@ data class Link(val text: Block, val url: String): MarkdownElement {
     override fun encode(): String = "[${text.encode()}]($url)"
 
     companion object: MarkdownElementDescriptor<Link> {
-        fun MarkdownDSL.link(text: Block, url: String) {
-            add(Link(text, url))
-        }
+        fun MarkdownDSL.link(text: Block, url: String) = Link(text, url)
 
         fun MarkdownDSL.link(text: String, url: String) = link(Block(listOf(Text(text))), url)
         fun MarkdownDSL.link(url: String, block: Block.BlockDSL.() -> Unit) = link(Block(Block.BlockDSL(flavor).apply(block).build()), url)

@@ -151,10 +151,7 @@ data class Table(val header: TableRow, val rows: KList<TableRow>): MarkdownEleme
     }
 
     companion object: MarkdownElementDescriptor<Table> {
-        fun MarkdownDSL.table(block: TableDSL.() -> Unit) {
-            val element = TableDSL(this.flavor).apply(block).build()
-            add(element)
-        }
+        fun MarkdownDSL.table(block: TableDSL.() -> Unit) = TableDSL(this.flavor).apply(block).build()
 
         override val id: String = "table"
         override val flavor: Flavor = CommonFlavor

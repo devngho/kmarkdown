@@ -13,9 +13,7 @@ data class InlineCodeBlock(val text: String) : MarkdownElement {
     override fun encode(): String = "`${text}`"
 
     companion object: MarkdownElementDescriptor<InlineCodeBlock> {
-        fun MarkdownDSL.inlineCodeBlock(text: String) {
-            add(InlineCodeBlock(text))
-        }
+        fun MarkdownDSL.inlineCodeBlock(text: String) = InlineCodeBlock(text)
 
         @Suppress("UnusedReceiverParameter")
         fun Block.BlockDSL.inlineCodeBlock(text: String) = InlineCodeBlock(text)

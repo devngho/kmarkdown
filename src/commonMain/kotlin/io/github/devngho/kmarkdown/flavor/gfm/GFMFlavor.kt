@@ -7,8 +7,7 @@ import io.github.devngho.kmarkdown.flavor.util.buildElements
 
 object GFMFlavor: Flavor by CommonFlavor {
     override val elements: Map<String, MarkdownElementDescriptor<*>> = CommonFlavor.elements + buildElements(
-        GFMTaskList
+        GFMTaskList,
+        GFMStrikethrough
     )
-
-    override val staticElements: Map<String, MarkdownElementDescriptor<*>> = CommonFlavor.staticElements + buildElements(GFMStrikethrough)
 }

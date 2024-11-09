@@ -13,9 +13,7 @@ data class CodeBlock(val text: String, val language: String? = null) : MarkdownE
     override fun encode(): String = "```${language ?: ""}\n$text\n```"
 
     companion object: MarkdownElementDescriptor<CodeBlock> {
-        fun MarkdownDSL.codeblock(text: String, language: String? = null) {
-            add(CodeBlock(text, language))
-        }
+        fun MarkdownDSL.codeblock(text: String, language: String? = null) = CodeBlock(text, language)
 
         override val id: String = "codeblock"
         override val flavor: Flavor = CommonFlavor

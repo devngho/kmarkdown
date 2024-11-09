@@ -17,11 +17,10 @@ data class Heading(val level: Int, val block: Block): MarkdownElement {
     }
 
     companion object: MarkdownElementDescriptor<Heading> {
-        fun MarkdownDSL.heading(level: Int, block: Block.BlockDSL.() -> Unit = {}, block2: MarkdownDSL.() -> Unit = {}) {
-            val element = Heading(level, Block(Block.BlockDSL(CommonFlavor).apply(block).build()))
-            add(element)
+        fun MarkdownDSL.heading(level: Int, block: Block.BlockDSL.() -> Unit = {}, block2: MarkdownDSL.() -> Unit = {}) = listOf(
+            Heading(level, Block(Block.BlockDSL(CommonFlavor).apply(block).build())),
             paragraph { block2() }
-        }
+        )
 
         fun MarkdownDSL.heading(level: Int, text: String, block2: MarkdownDSL.() -> Unit = {}) = heading(level, { +text }, block2)
 

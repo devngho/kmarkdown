@@ -14,11 +14,7 @@ data class Blockquote(val children: Paragraph) : MarkdownElement {
     override fun encode(): String = children.encode().prependIndent("> ")
 
     companion object: MarkdownElementDescriptor<Blockquote> {
-        fun MarkdownDSL.blockquote(block: MarkdownDSL.() -> Unit) {
-            val element = Blockquote(Paragraph(MarkdownDSL(this.flavor).apply(block).elements))
-
-            add(element)
-        }
+        fun MarkdownDSL.blockquote(block: MarkdownDSL.() -> Unit) = Blockquote(Paragraph(MarkdownDSL(this.flavor).apply(block).elements))
 
         override val id: String = "blockquote"
         override val flavor: Flavor = CommonFlavor

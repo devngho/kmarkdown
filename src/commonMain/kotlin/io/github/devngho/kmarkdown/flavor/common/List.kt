@@ -46,10 +46,7 @@ data class List(val items: KList<MarkdownElement>, val listStyle: ListStyle): Ma
     }.joinToString("\n")
 
     companion object: MarkdownElementDescriptor<List> {
-        fun MarkdownDSL.list(listStyle: ListStyle, block: ListDSL.() -> Unit) {
-            val element = ListDSL(listStyle, this.flavor).apply(block).build()
-            add(element)
-        }
+        fun MarkdownDSL.list(listStyle: ListStyle, block: ListDSL.() -> Unit) = ListDSL(listStyle, this.flavor).apply(block).build()
 
         override val id: String = "list"
         override val flavor: Flavor = CommonFlavor
