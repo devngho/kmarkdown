@@ -12,7 +12,7 @@ data class Block(val children: kotlin.collections.List<MarkdownElement>): Markdo
     override val descriptor: MarkdownElementDescriptor<out MarkdownElement> = Block
 
     @MarkdownDSLMarker
-    class BlockDSL internal constructor(val flavor: Flavor) {
+    class BlockDSL(val flavor: Flavor) {
         private val elements = mutableListOf<MarkdownElement>()
 
         operator fun String.unaryPlus() {

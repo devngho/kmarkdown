@@ -8,11 +8,13 @@ kmarkdown은 **잘 테스트된**, **순수한 코틀린** 마크다운 라이�
 
 ### 변경 내역
 
+- 0\.2\.1
+  - Block\.BlockDSL과 MarkdownDSL 생성자는 이제 public입니다\.
 - 0\.2\.0
-    - MarkdownDSL에 요소를 추가하는 방법이 변경되었습니다\.
-    - TextStyle는 이제 일반 MarkdownElement입니다\.
+  - MarkdownDSL에 요소를 추가하는 방법이 변경되었습니다\.
+  - TextStyle는 이제 일반 MarkdownElement입니다\.
 - 0\.1\.0
-    - 첫 릴리즈
+  - 첫 릴리즈
 
 ### 설치
 

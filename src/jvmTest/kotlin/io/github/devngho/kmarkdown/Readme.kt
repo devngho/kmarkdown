@@ -34,6 +34,11 @@ class Readme: StringSpec({
 
             +heading(3, "Changelog") {
                 +list(List.ListStyle.UNORDERED) {
+                    item { +"0.2.1" }
+                    list(List.ListStyle.UNORDERED) {
+                        item { +"Block.BlockDSL and MarkdownDSL constructor is now public." }
+                    }
+
                     item { +"0.2.0" }
                     list(List.ListStyle.UNORDERED) {
                         item { +"How to add elements in MarkdownDSL is changed." }
@@ -369,6 +374,11 @@ class Readme: StringSpec({
 
             +heading(3, "변경 내역") {
                 +list(List.ListStyle.UNORDERED) {
+                    item { +"0.2.1" }
+                    list(List.ListStyle.UNORDERED) {
+                        item { +"Block.BlockDSL과 MarkdownDSL 생성자는 이제 public입니다." }
+                    }
+
                     item { +"0.2.0" }
                     list(List.ListStyle.UNORDERED) {
                         item { +"MarkdownDSL에 요소를 추가하는 방법이 변경되었습니다." }

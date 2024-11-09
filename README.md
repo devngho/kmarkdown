@@ -8,11 +8,13 @@ This README\.MD was generated using kmarkdown\. [Check it out\!](src/jvmTest/kot
 
 ### Changelog
 
+- 0\.2\.1
+  - Block\.BlockDSL and MarkdownDSL constructor is now public\.
 - 0\.2\.0
-    - How to add elements in MarkdownDSL is changed\.
-    - TextStyle is just a MarkdownElement now\.
+  - How to add elements in MarkdownDSL is changed\.
+  - TextStyle is just a MarkdownElement now\.
 - 0\.1\.0
-    - Initial release
+  - Initial release
 
 ### Installation
 

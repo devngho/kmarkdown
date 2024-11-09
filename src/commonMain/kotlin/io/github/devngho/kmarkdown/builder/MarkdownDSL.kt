@@ -6,7 +6,7 @@ import io.github.devngho.kmarkdown.flavor.MarkdownElement
 import io.github.devngho.kmarkdown.flavor.common.CommonFlavor
 
 @MarkdownDSLMarker
-class MarkdownDSL internal constructor(val flavor: Flavor) {
+class MarkdownDSL(val flavor: Flavor) {
     val elements = mutableListOf<MarkdownElement>()
 
     fun add(element: MarkdownElement) {
