@@ -34,7 +34,7 @@ data class List(val items: KList<MarkdownElement>, val listStyle: ListStyle): Ma
 
     override fun encode(): String = items.mapIndexed() { index, it ->
         when (it) {
-            is List -> it.encode().prependIndent("  ")
+            is List -> it.encode().prependIndent("    ")
             is Block -> {
                 when (listStyle) {
                     ListStyle.ORDERED -> "${index + 1}. " + it.encode()
